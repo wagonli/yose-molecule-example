@@ -1,0 +1,1 @@
+web: ./build/install/yose-molecule/bin/yose-molecule $PORT

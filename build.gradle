@@ -39,4 +39,8 @@ run {
     args port
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
+
 task stage(dependsOn: ['clean', 'installApp'])

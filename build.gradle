@@ -5,19 +5,15 @@ defaultTasks 'build'
 
 repositories {
     mavenCentral()
-    maven {
-        url 'https://oss.sonatype.org/content/repositories/snapshots/'
-    }
 }
 
 def libs = [
         gson              : 'com.google.code.gson:gson:2.2.4',
-        molecule          : 'com.vtence.molecule:molecule:0.4',
+        molecule          : 'com.vtence.molecule:molecule:0.7',
         simple            : 'org.simpleframework:simple:5.1.6',
         hamcrest_all      : 'org.hamcrest:hamcrest-all:1.3',
         junit             : 'junit:junit:4.11@jar',
-        htmlunit          : 'net.sourceforge.htmlunit:htmlunit:2.14',
-        molecule_test     : 'com.vtence.molecule:molecule:0.4-SNAPSHOT:tests',
+        molecule_test     : 'com.vtence.molecule:molecule:0.7:tests',
 ]
 
 dependencies {
@@ -27,7 +23,6 @@ dependencies {
 
     testCompile libs.hamcrest_all
     testCompile libs.junit
-    testCompile libs.htmlunit
     testCompile libs.molecule_test
 }
 

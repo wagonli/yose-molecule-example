@@ -10,6 +10,7 @@ import java.io.IOException;
 import static com.vtence.molecule.http.MimeTypes.JSON;
 
 public class Yose {
+
     private final Gson gson;
 
     public Yose(Gson gson) {
@@ -19,9 +20,7 @@ public class Yose {
     public void start(WebServer server) throws IOException {
         server.start(new DynamicRoutes() {{
 
-            get("/ping").to((request, response) -> {
-                response.contentType(JSON).body(gson.toJson(new Pong()));
-            });
+            get("/ping").to((request, response) -> response.contentType(JSON).body(gson.toJson(new Pong())));
 
             get("/").to((request, response) -> response.body("Hello Yose"));
 

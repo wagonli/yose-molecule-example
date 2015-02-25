@@ -1,48 +1,40 @@
-package yose;
+package yose.worlds;
 
-import com.google.gson.Gson;
-import com.vtence.molecule.WebServer;
 import com.vtence.molecule.testing.http.HttpRequest;
 import com.vtence.molecule.testing.http.HttpResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import yose.YoseDriver;
 
 import java.io.IOException;
 
 import static com.vtence.molecule.testing.http.HttpResponseAssert.assertThat;
-import static org.hamcrest.CoreMatchers.containsString;
 
-public class StartWorldTest {
+public class StartWorld {
 
-    int PORT = 9999;
-    WebServer server = WebServer.create(PORT);
+    YoseDriver yose = new YoseDriver(9999);
 
-    HttpRequest request = new HttpRequest(PORT);
+    HttpRequest request = new HttpRequest(9999);
     HttpResponse response;
-
-    Yose yose = new Yose(new Gson());
 
     @Before
     public void startGame() throws Exception {
-        yose.start(server);
+        yose.start();
     }
 
     @After
     public void stopGame() throws Exception {
-        server.stop();
+        yose.stop();
     }
 
     @Test
-    public void passesHelloChallenge() throws IOException {
-        response = request.get("/");
-
-        assertThat(response).isOK()
-                            .hasBodyText(containsString("Hello Yose"));
+    public void firstWebPageChallenge() throws IOException {
+        yose.home().displaysGreeting("Hello Yose");
     }
 
     @Test
-    public void passesPingChallenge() throws IOException {
+    public void firstWebServiceChallenge() throws IOException {
         response = request.get("/ping");
 
         assertThat(response).isOK()

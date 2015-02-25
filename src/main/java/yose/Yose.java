@@ -1,23 +1,25 @@
 package yose;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.vtence.molecule.WebServer;
 import com.vtence.molecule.routing.DynamicRoutes;
 
 import java.io.IOException;
+import java.net.URI;
 
 import static com.vtence.molecule.http.MimeTypes.JSON;
 
 public class Yose {
 
-    private final Gson gson;
+    private final WebServer server;
 
-    public Yose(Gson gson) {
-        this.gson = gson;
+    public Yose(int port) {
+        this.server = WebServer.create(port);
     }
 
-    public void start(WebServer server) throws IOException {
+    public void start() throws IOException {
+        final Gson gson = new Gson();
+
         server.start(new DynamicRoutes() {{
 
             get("/ping").to((request, response) -> response.contentType(JSON).body(gson.toJson(new Pong())));
@@ -25,6 +27,14 @@ public class Yose {
             get("/").to((request, response) -> response.body("Hello Yose"));
 
         }});
+    }
+
+    public URI uri() {
+        return server.uri();
+    }
+
+    public void stop() throws IOException {
+        server.stop();
     }
 
     public static class Pong {
@@ -38,9 +48,8 @@ public class Yose {
     }
 
     public static void main(String[] args) throws IOException {
-        WebServer server = WebServer.create(port(args));
-        Yose yose = new Yose(new GsonBuilder().setPrettyPrinting().create());
-        yose.start(server);
-        System.out.println("Access at: " + server.uri() + "/ping");
+        Yose yose = new Yose(port(args));
+        yose.start();
+        System.out.print("To play the game visit " + yose.uri());
     }
 }

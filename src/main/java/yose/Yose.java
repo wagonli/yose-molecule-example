@@ -37,19 +37,23 @@ public class Yose {
         server.stop();
     }
 
+    public static Yose launch(String... args) throws IOException {
+        Yose yose = new Yose(port(args));
+        yose.start();
+        return yose;
+    }
+
+    private static int port(String[] args) {
+        return args.length > 0 ? Integer.parseInt(args[PORT]) : 8080;
+    }
+
     public static class Pong {
         public final boolean alive = true;
     }
 
     private static final int PORT = 0;
 
-    private static int port(String[] args) {
-        return args.length > 0 ? Integer.parseInt(args[PORT]) : 8080;
-    }
-
     public static void main(String[] args) throws IOException {
-        Yose yose = new Yose(port(args));
-        yose.start();
-        System.out.print("To play the game visit " + yose.uri());
+        System.out.print("To play the game visit " + Yose.launch(args).uri());
     }
 }

@@ -10,6 +10,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'application'
+apply plugin: 'jacoco'
 apply plugin: 'com.moowork.node'
 
 defaultTasks 'build'
@@ -48,6 +49,8 @@ dependencies {
 task jsTest(dependsOn: ['npm_install', 'npm_test'])
 
 test.dependsOn jsTest
+
+task coverage(dependsOn: ['test', 'jacocoTestReport'])
 
 mainClassName = 'yose.Yose'
 applicationName = 'yose-molecule'

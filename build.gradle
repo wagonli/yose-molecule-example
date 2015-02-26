@@ -1,5 +1,16 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.moowork.gradle:gradle-node-plugin:0.8'
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'application'
+apply plugin: 'com.moowork.node'
 
 defaultTasks 'build'
 
@@ -33,6 +44,10 @@ dependencies {
     testCompile libs.windowlicker_core
     testCompile libs.windowlicker_web
 }
+
+task jsTest(dependsOn: ['npm_install', 'npm_test'])
+
+test.dependsOn jsTest
 
 mainClassName = 'yose.Yose'
 applicationName = 'yose-molecule'

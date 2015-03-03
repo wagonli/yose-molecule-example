@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import yose.YoseDriver;
+import yose.pages.GitHubPage;
 
 import java.io.IOException;
 
@@ -47,8 +48,8 @@ public class StartWorld {
 
     @Test
     public void shareWebPageChallenge() throws IOException {
-        AsyncWebDriver browser = yose.home().openGithub();
-        browser.assertPageSource(containsString("yose-molecule-example"));
-        browser.element(By.id("readme")).assertText(containsString("YoseTheGame"));
+        GitHubPage gitHubPage = yose.home().openGithub();
+        gitHubPage.seesInReadme("YoseTheGame");
+
     }
 }

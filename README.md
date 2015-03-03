@@ -1,4 +1,4 @@
-[![Travis Build Status](https://travis-ci.org/yosethegame/java-molecule-example.svg?branch=master)](https://travis-ci.org/yosethegame/java-molecule-example)
+[![Travis Build Status](https://travis-ci.org/wagonli/yose-molecule-example.svg?branch=master)](https://travis-ci.org/wagonli/yose-molecule-example)
 
 
 java-molecule-example
@@ -31,7 +31,7 @@ gradle run
 ```
 
 ... open your browser and navigate to:
-
+gi
 ```sh
 http://localhost:8080/ping
 ```

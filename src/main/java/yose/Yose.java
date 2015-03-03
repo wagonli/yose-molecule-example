@@ -19,7 +19,12 @@ public class Yose {
         final Gson gson = new Gson();
 
         server.start(new DynamicRoutes() {{
-            get("/").to((request, response) -> response.body("Hello Yose"));
+            get("/").to((request, response) ->
+            {
+                response.body(
+                        "<html><body><p>Hello Yose</p><br /><a id=\"repository-link\" href=\"https://github.com/wagonli/yose-molecule-example\">open on github</a></body></html>"
+                );
+            });
             get("/ping").to(new Ping(gson)::pong);
         }});
     }

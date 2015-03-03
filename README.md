@@ -53,5 +53,5 @@ I also set up the ```gradle stage``` command for you.
 
 You should be able to deploy the application with a simple ```git push``` to Heroku
 
-## hello !!
+**YoseTheGame**
 

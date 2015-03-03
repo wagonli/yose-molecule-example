@@ -35,5 +35,10 @@ public class TestNumberFactor {
         assertThat(decompositon, Matchers.arrayContaining(2, 2, 2));
 
     }
+    @Test
+    public void powerOf1024() throws IOException {
+        Integer[] decompositon = PrimeFactor.powerOfTwoDecomposition(1024);
+        assertThat(decompositon, Matchers.arrayContaining(2, 2, 2,2,2,2,2, 2, 2,2));
 
+    }
 }

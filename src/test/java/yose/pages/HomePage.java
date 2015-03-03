@@ -1,6 +1,9 @@
 package yose.pages;
 
+import com.objogate.wl.web.AsyncElementDriver;
 import com.objogate.wl.web.AsyncWebDriver;
+import com.objogate.wl.web.ElementAction;
+import org.openqa.selenium.By;
 
 import static org.hamcrest.Matchers.containsString;
 
@@ -11,8 +14,14 @@ public class HomePage {
         this.browser = browser;
     }
 
-    public HomePage displaysGreeting(String message) {
+    public HomePage displaysMessage(String message) {
         browser.assertPageSource(containsString(message));
         return this;
+    }
+
+    public AsyncWebDriver openGithub() {
+        AsyncElementDriver element = browser.element(By.id("repository-link"));
+        element.click();
+        return browser;
     }
 }

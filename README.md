@@ -1,3 +1,4 @@
+
 [![Travis Build Status](https://travis-ci.org/fredmaz/yose-molecule-example.svg?branch=master)](https://travis-ci.org/fredmaz/yose-molecule-example)
 
 
@@ -31,7 +32,7 @@ gradle run
 ```
 
 ... open your browser and navigate to:
-
+gi
 ```sh
 http://localhost:8080/ping
 ```
@@ -53,5 +54,5 @@ I also set up the ```gradle stage``` command for you.
 
 You should be able to deploy the application with a simple ```git push``` to Heroku
 
-ma modif de la mort
+**YoseTheGame**
 

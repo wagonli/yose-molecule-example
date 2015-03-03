@@ -3,6 +3,7 @@ package yose.worlds;
 import com.objogate.wl.web.AsyncWebDriver;
 import com.vtence.molecule.testing.http.HttpRequest;
 import com.vtence.molecule.testing.http.HttpResponse;
+import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.openqa.selenium.By;
 import yose.YoseDriver;
 import yose.pages.GitHubPage;
 
+import java.io.File;
 import java.io.IOException;
 
 import static com.vtence.molecule.testing.http.HttpResponseAssert.assertThat;

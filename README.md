@@ -1,4 +1,5 @@
-[![Travis Build Status](https://travis-ci.org/wagonli/yose-molecule-example.svg?branch=master)](https://travis-ci.org/wagonli/yose-molecule-example)
+
+[![Travis Build Status](https://travis-ci.org/fredmaz/yose-molecule-example.svg?branch=master)](https://travis-ci.org/fredmaz/yose-molecule-example)
 
 
 java-molecule-example

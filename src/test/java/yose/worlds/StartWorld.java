@@ -53,4 +53,14 @@ public class StartWorld {
         GitHubPage gitHubPage = yose.home().openGithub();
         gitHubPage.seesInReadme("YoseTheGame");
     }
+
+    @Test
+    public void powerOfTwoChallenge() throws IOException {
+        response = request.get("/primeFactors?number=4");
+
+        assertThat(response).isOK()
+                .hasContentType("application/json")
+                .hasBodyText("{\"number\":4,\"decomposition\":[2,2]}");
+    }
+
 }

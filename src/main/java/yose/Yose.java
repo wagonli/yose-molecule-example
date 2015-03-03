@@ -2,8 +2,10 @@ package yose;
 
 import com.google.gson.Gson;
 import com.vtence.molecule.WebServer;
+import com.vtence.molecule.lib.FileBody;
 import com.vtence.molecule.routing.DynamicRoutes;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 
@@ -19,7 +21,10 @@ public class Yose {
         final Gson gson = new Gson();
 
         server.start(new DynamicRoutes() {{
-            get("/").to((request, response) -> response.body("Hello Yose"));
+            get("/").to((request, response) ->
+            {
+                response.body(new FileBody(new File("src/main/webapp/HomePage.html")));
+            });
             get("/ping").to(new Ping(gson)::pong);
         }});
     }

@@ -30,7 +30,7 @@ gradle run
 ```
 
 ... open your browser and navigate to:
-
+gi
 ```sh
 http://localhost:8080/ping
 ```
@@ -51,4 +51,6 @@ and ```system.properties``` files required by Heroku.
 I also set up the ```gradle stage``` command for you. 
 
 You should be able to deploy the application with a simple ```git push``` to Heroku
+
+**YoseTheGame**
 

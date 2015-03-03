@@ -1,7 +1,9 @@
 package yose;
 
 import com.google.gson.Gson;
+import com.sun.corba.se.spi.presentation.rmi.StubAdapter;
 import com.vtence.molecule.WebServer;
+import com.vtence.molecule.http.HttpStatus;
 import com.vtence.molecule.routing.DynamicRoutes;
 
 import java.io.IOException;
@@ -21,6 +23,7 @@ public class Yose {
         server.start(new DynamicRoutes() {{
             get("/").to((request, response) -> response.body("Hello Yose"));
             get("/ping").to(new Ping(gson)::pong);
+            get("/primeFactors").to(new PrimeFactors(gson)::powerOfTwoChallenge);
         }});
     }
 

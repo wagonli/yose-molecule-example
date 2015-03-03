@@ -13,9 +13,9 @@ public class GitHubPage {
         this.browser = browser;
     }
 
-    public void seesInReadme(String yoseTheGame) 
+    public void seesInReadme(String textInReadmeElement)
     {
         browser.assertPageSource(containsString("yose-molecule-example"));
-        browser.element(By.id("readme")).assertText(containsString(yoseTheGame));
+        browser.element(By.id("readme")).assertText(containsString(textInReadmeElement));
     }
 }

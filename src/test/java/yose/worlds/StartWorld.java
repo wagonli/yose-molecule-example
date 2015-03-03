@@ -50,6 +50,5 @@ public class StartWorld {
     public void shareWebPageChallenge() throws IOException {
         GitHubPage gitHubPage = yose.home().openGithub();
         gitHubPage.seesInReadme("YoseTheGame");
-
     }
 }

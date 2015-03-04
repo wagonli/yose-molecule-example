@@ -16,9 +16,6 @@ public class Portfolio {
 
     YoseDriver user = new YoseDriver(9999);
 
-    HttpRequest request = new HttpRequest(9999);
-    HttpResponse response;
-
     @Before
     public void startGame() throws Exception {
         user.start();
@@ -27,26 +24,6 @@ public class Portfolio {
     @After
     public void stopGame() throws Exception {
         user.stop();
-    }
-
-    @Test
-    public void firstWebPageChallenge() throws IOException {
-        user.home().displaysMessage("Hello Yose");
-    }
-
-    @Test
-    public void firstWebServiceChallenge() throws IOException {
-        response = request.get("/ping");
-
-        assertThat(response).isOK()
-                            .hasContentType("application/json")
-                            .hasBodyText("{\"alive\":true}");
-    }
-
-    @Test
-    public void shareWebPageChallenge() throws IOException {
-        GitHubPage gitHubPage = user.home().openGithub();
-        gitHubPage.seesInReadme("YoseTheGame");
     }
     
     @Test

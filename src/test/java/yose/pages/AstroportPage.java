@@ -17,10 +17,4 @@ public class AstroportPage {
         browser.assertPageSource(containsString(message));
         return this;
     }
-
-    public GitHubPage openGithub() {
-        AsyncElementDriver element = browser.element(By.id("repository-link"));
-        element.click();
-        return new GitHubPage(browser);
-    }
 }

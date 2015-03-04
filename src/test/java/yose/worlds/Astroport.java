@@ -28,34 +28,10 @@ public class Astroport {
     public void stopGame() throws Exception {
         yose.stop();
     }
-
+    
     @Test
-    public void firstWebPageChallenge() throws IOException {
-        yose.home().displaysMessage("Hello Yose");
-    }
-
-    @Test
-    public void firstWebServiceChallenge() throws IOException {
-        response = request.get("/ping");
-
-        assertThat(response).isOK()
-                            .hasContentType("application/json")
-                            .hasBodyText("{\"alive\":true}");
-    }
-
-    @Test
-    public void shareWebPageChallenge() throws IOException {
-        GitHubPage gitHubPage = yose.home().openGithub();
-        gitHubPage.seesInReadme("YoseTheGame");
-    }
-
-    @Test
-    public void powerOfTwoChallenge() throws IOException {
-        response = request.get("/primeFactors?number=4");
-
-        assertThat(response).isOK()
-                .hasContentType("application/json")
-                .hasBodyText("{\"number\":4,\"decomposition\":[2,2]}");
+    public void seesAstroportName() throws IOException {
+        yose.astroport().displaysMessage("New New York");
     }
 
 }

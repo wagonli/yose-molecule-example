@@ -28,6 +28,7 @@ public class Yose {
             });
             get("/ping").to(new Ping(gson)::pong);
             get("/primeFactors").to(new PrimeFactors(gson)::powerOfTwoChallenge);
+            get("/astroport").to(new Astroport()::astroportNameChallenge);
         }});
     }
 

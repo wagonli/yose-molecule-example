@@ -40,7 +40,7 @@ public class PrimeFactors {
         }
     }
 
-    public  static class Error {
+    public static class Error {
         public String number;
         public String error = "not a number";
 

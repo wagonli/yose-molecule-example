@@ -9,13 +9,21 @@ import java.util.List;
 public class PrimeFactor {
 
 
-    public static Integer[] powerOfTwoDecomposition(int power) {
-     
-            List<Integer> result = new
-                    ArrayList<>();
-            for (int remainder=power; remainder>=2; remainder=remainder/2) {
-                result.add(2);
+    /*
+    Get a number and returns an ordered list of its prime factors
+     */
+    public static Integer[] primeFactorList(int number) {
+        List<Integer> result = new ArrayList<>();
+        int candidate=2;
+
+        while (number != 1) {
+            for (; number % candidate == 0; number = number / candidate) {
+                result.add(candidate);
             }
-            return result.toArray(new Integer[result.size()]);
+            candidate++;
+        }
+        return result.toArray(new Integer[result.size()]);
     }
+
+
 }

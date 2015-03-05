@@ -48,8 +48,6 @@ public class PrimeFactors {
         response = request.get("/primeFactors?number=65534");
         assertThat(response).isOK();
         with(response.bodyText())
-                //.assertThat("number", equalTo(16))
-                //.assertThat("decomposition", equalTo(Arrays.asList(2,2,2,2)));
                 .assertThat("number", equalTo(65534))
                 .assertThat("decomposition", equalTo(Arrays.asList(2,7,31,151)));
     }

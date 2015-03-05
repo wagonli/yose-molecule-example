@@ -9,9 +9,10 @@ import java.util.List;
 public class PrimeFactor {
 
 
+    /*
+    Get a number and returns an ordered list of its prime factors
+     */
     public static Integer[] primeFactorList(int number) {
-
-
         List<Integer> result = new ArrayList<>();
         int candidate=2;
 
@@ -21,7 +22,6 @@ public class PrimeFactor {
             }
             candidate++;
         }
-
         return result.toArray(new Integer[result.size()]);
     }
 

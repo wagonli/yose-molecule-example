@@ -35,4 +35,9 @@ public class Minesweeper {
         yose.minesweeper().hasBoard(8, 8);
     }
 
+    @Test
+    public void hasOneMineChallenge() throws IOException {
+        yose.minesweeper().detectMine(3, 8);
+    }
+
 }

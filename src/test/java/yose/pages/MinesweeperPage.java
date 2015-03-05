@@ -40,4 +40,8 @@ public class MinesweeperPage {
     public void seesMine(int row, int col) {
         browser.element(By.cssSelector("td#cell-" + row + "x" + col + ".lost")).assertExists();
     }
+
+    public void revealCell(int row, int col) {
+        browser.element(By.cssSelector("td#cell-" + row + "x" + col)).click();
+    }
 }

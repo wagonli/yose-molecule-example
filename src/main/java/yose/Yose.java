@@ -1,7 +1,6 @@
 package yose;
 
 import com.google.gson.Gson;
-import com.sun.corba.se.spi.presentation.rmi.StubAdapter;
 import com.vtence.molecule.WebServer;
 import com.vtence.molecule.lib.FileBody;
 import com.vtence.molecule.routing.DynamicRoutes;
@@ -29,7 +28,7 @@ public class Yose {
                 response.body(new FileBody(new File("src/main/webapp/MinesweeperPage.html")));
             });
             get("/ping").to(new Ping(gson)::pong);
-            get("/primeFactors").to(new PrimeFactors(gson)::powerOfTwoChallenge);
+            get("/primeFactors").to(new PrimeFactors(gson)::decomposition);
             get("/astroport").to(new Astroport()::astroportNameChallenge);
         }});
     }

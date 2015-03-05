@@ -40,7 +40,7 @@ public class PrimeFactors {
                 .hasContentType("application/json");
         with(response.bodyText())
                 .assertThat("number", equalTo(4))
-                .assertThat("decomposition", equalTo(Arrays.asList(2,2)));
+                .assertThat("decomposition", equalTo(Arrays.asList(2, 2)));
     }
 
     @Test
@@ -49,7 +49,7 @@ public class PrimeFactors {
         assertThat(response).isOK();
         with(response.bodyText())
                 .assertThat("number", equalTo(65534))
-                .assertThat("decomposition", equalTo(Arrays.asList(2,7,31,151)));
+                .assertThat("decomposition", equalTo(Arrays.asList(2, 7, 31, 151)));
     }
 
     @Test
@@ -61,5 +61,16 @@ public class PrimeFactors {
         with(response.bodyText())
                 .assertThat("number", equalTo("hello"))
                 .assertThat("error", equalTo("not a number"));
+    }
+
+    @Test
+    public void bigNumberGuardChallenge() throws IOException {
+        response = request.get("/primeFactors?number=1000001");
+
+        assertThat(response).isOK()
+                .hasContentType("application/json");
+        with(response.bodyText())
+                .assertThat("number", equalTo("1000001"))
+                .assertThat("error", equalTo("too big number (>1e6)"));
     }
 }

@@ -15,19 +15,34 @@ public class PrimeFactors {
         this.gson = gson;
     }
 
-    public void powerOfTwoChallenge(Request request, Response response) throws Exception {
-       String parameter = request.parameter("number");
-       if (parameter== null) {
-           response.statusCode(400);
-           return;
-       }
-       try {
-            Integer number = Integer.parseInt(parameter);
-            response.contentType(JSON).body(gson.toJson(new Decomposition(number)));
-       } catch (NumberFormatException e) {
-            response.contentType(JSON).body(gson.toJson(new Error(parameter)));
-       }
+    public void decomposition(Request request, Response response) throws Exception {
+        String number = request.parameter("number");
+        if (number == null) {
+            response.statusCode(400);
+            return;
+        }
+        response.contentType(JSON).body(gson.toJson(decompose(number)));
     }
+
+    private Object decompose(String input) {
+
+        if (!isInteger(input)) return new Error(input);
+        Integer number = Integer.parseInt(input);
+        if (number <= 100000) {
+            return  new Decomposition(number);
+        }
+        return new ErrorBigNumber(input);
+    }
+
+    private boolean isInteger(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public static class Decomposition {
         public Integer number = 0;
         public Integer[] decomposition;
@@ -46,8 +61,16 @@ public class PrimeFactors {
             this.number = number;
 
         }
-
     }
 
+    public static class ErrorBigNumber {
+        public String number;
+        public String error = "too big number (>1e6)";
+
+        public ErrorBigNumber(String number) {
+            this.number = number;
+
+        }
+    }
 
 }

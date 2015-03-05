@@ -45,11 +45,13 @@ public class PrimeFactors {
 
     @Test
     public void getOrderedListOfPrimeNumbers() throws IOException {
-        response = request.get("/primeFactors?number=65534");
+        response = request.get("/primeFactors?number=16");
         assertThat(response).isOK();
         with(response.bodyText())
-                .assertThat("number", equalTo(65534))
-                .assertThat("decomposition", equalTo(Arrays.asList(2,7,31,151)));
+                .assertThat("number", equalTo(16))
+                .assertThat("decomposition", equalTo(Arrays.asList(2,2,2,2)));
+                //.assertThat("number", equalTo(65534))
+                //.assertThat("decomposition", equalTo(Arrays.asList(2,7,31,151)));
     }
 
     @Test

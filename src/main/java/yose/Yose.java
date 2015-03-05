@@ -4,11 +4,16 @@ import com.google.gson.Gson;
 import com.sun.corba.se.spi.presentation.rmi.StubAdapter;
 import com.vtence.molecule.WebServer;
 import com.vtence.molecule.lib.FileBody;
+import com.vtence.molecule.middlewares.FileServer;
+import com.vtence.molecule.middlewares.StaticAssets;
 import com.vtence.molecule.routing.DynamicRoutes;
+import com.vtence.molecule.routing.RouteBuilder;
+import com.vtence.molecule.routing.RouteSet;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.file.PathMatcher;
 
 public class Yose {
 
@@ -20,7 +25,8 @@ public class Yose {
 
     public void start() throws IOException {
         final Gson gson = new Gson();
-
+    
+        server.add(new StaticAssets(new FileServer(new File("src/main/static")), "/js", "/css"));
         server.start(new DynamicRoutes() {{
             get("/").to(new StaticHtmlPageController(new File("src/main/webapp/HomePage.html"))::setupHtmlPage);
 

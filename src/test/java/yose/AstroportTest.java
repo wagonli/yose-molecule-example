@@ -28,4 +28,18 @@ public class AstroportTest {
     public void astroportNameIsNewNewYork() throws IOException {
         assertThat(astroportDom, DomMatchers.hasUniqueSelector("#astroport-name", DomMatchers.hasText(astroportName)));
     }
+
+    @Test
+    public void astroportHas3Gates() throws IOException {
+        assertThat(astroportDom, DomMatchers.hasUniqueSelector("#gate-1"));
+        assertThat(astroportDom, DomMatchers.hasUniqueSelector("#gate-2"));
+        assertThat(astroportDom, DomMatchers.hasUniqueSelector("#gate-3"));
+    }
+
+    @Test
+    public void astroportHas3GatesContainingDockingStation() throws IOException {
+        assertThat(astroportDom, DomMatchers.hasUniqueSelector("#gate-1", DomMatchers.hasUniqueSelector("#ship-1")));
+        assertThat(astroportDom, DomMatchers.hasUniqueSelector("#gate-2", DomMatchers.hasUniqueSelector("#ship-2")));
+        assertThat(astroportDom, DomMatchers.hasUniqueSelector("#gate-3", DomMatchers.hasUniqueSelector("#ship-3")));
+    }
 }

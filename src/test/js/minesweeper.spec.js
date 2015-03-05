@@ -1,15 +1,4 @@
 describe('minesweeper', function () {
-    var documentGrid = [
-        ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'],
-        ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'],
-        ['empty', 'empty', 'empty', 'empty', 'empty', 'bomb' , 'empty', 'empty'],
-        ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'],
-        ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'],
-        ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'],
-        ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'],
-        ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'],
-   ];
-
    beforeEach(function() {
         var htmlTable = '<table>';
         for(var line = 1; line <= 8; line ++) {
@@ -24,14 +13,12 @@ describe('minesweeper', function () {
    });
 
     it('has mine on trapped cell', function() {
-        document.grid = documentGrid;
         load();
         var trappedCell = document.getElementById('cell-3x6');
         assert.equal(trappedCell.className, 'lost');
     });
 
-    it('has no mine on not trapped cell', function() {
-        document.grid = documentGrid;
+    it('has no mine on safe cells', function() {
         load();
         var trappedCell = document.getElementsByClassName('lost');
         assert.equal(trappedCell.length, 1);

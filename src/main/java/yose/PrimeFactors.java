@@ -5,8 +5,6 @@ import com.vtence.molecule.Request;
 import com.vtence.molecule.Response;
 import yose.primefactor.PrimeFactor;
 
-import java.lang.reflect.Array;
-
 import static com.vtence.molecule.http.MimeTypes.JSON;
 
 public class PrimeFactors {
@@ -36,7 +34,7 @@ public class PrimeFactors {
 
         public Decomposition(Integer number) {
             this.number = number;
-            decomposition = PrimeFactor.powerOfTwoDecomposition(number);
+            decomposition = PrimeFactor.primeFactorList(number);
         }
     }
 

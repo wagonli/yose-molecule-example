@@ -34,4 +34,15 @@ public class Astroport {
         yose.astroport().displaysMessage("New New York");
     }
 
+    @Test
+    public void seesGates() throws IOException {
+        yose.astroport().displaysGates();
+    }
+
+    @Test
+    public void seesShips() throws IOException {
+        yose.astroport().displaysShips();
+    }
+    
+
 }

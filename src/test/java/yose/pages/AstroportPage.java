@@ -17,4 +17,16 @@ public class AstroportPage {
         browser.assertPageSource(containsString(message));
         return this;
     }
+
+    public void displaysGates() {
+        browser.element(By.id("gate-1")).assertExists();
+        browser.element(By.id("gate-2")).assertExists();
+        browser.element(By.id("gate-3")).assertExists();
+    }
+
+    public void displaysShips() {
+        browser.element(By.id("ship-1")).assertExists();
+        browser.element(By.id("ship-2")).assertExists();
+        browser.element(By.id("ship-3")).assertExists();
+    }
 }

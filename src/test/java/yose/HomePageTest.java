@@ -20,24 +20,16 @@ import static org.junit.Assert.assertThat;
 public class HomePageTest {
 
     Element homePageDOM;
-    
-    String homePage;
+
     //enter here your github user account name
     final String projectName = "wagonli";
     final private String contactInfoURL = "https://fr.linkedin.com/in/lseisdedos";
 
     @Before
     public void getFileContent() throws IOException, SAXException {
-        homePage = FileUtils.readFileToString(new File("src/main/webapp/HomePage.html"));
-        homePageDOM = HTMLDocument.toElement(FileUtils.readFileToString(new File("src/main/webapp/HomePage.html")));
+         homePageDOM = HTMLDocument.toElement(FileUtils.readFileToString(new File("src/main/webapp/HomePage.html")));
     }
         
-
-    @Test
-    public void projectNameIsWagonli() throws IOException {
-        assertThat(homePage, containsString(projectName));
-    }
-
     @Test
     public void linksToGitHubRepository() throws IOException {
         assertThat(homePageDOM, DomMatchers.hasUniqueSelector("a#repository-link", DomMatchers.hasAttribute("href", "https://github.com/" + projectName + "/yose-molecule-example")));

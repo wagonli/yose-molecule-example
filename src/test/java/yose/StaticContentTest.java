@@ -2,10 +2,12 @@ package yose;
 
 import com.vtence.molecule.testing.http.HttpRequest;
 import com.vtence.molecule.testing.http.HttpResponse;
+import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 import static com.vtence.molecule.testing.http.HttpResponseAssert.assertThat;
 
@@ -33,7 +35,8 @@ public class StaticContentTest {
         response = request.get("/css/staticContent.css");
         assertThat(response)
                 .isOK()
-                .hasContentType("text/css");
+                .hasContentType("text/css")
+                .hasBodyText(FileUtils.readFileToString(new File("src/main/static/css/staticContent.css")));
     }
 
     @Test
@@ -41,6 +44,8 @@ public class StaticContentTest {
         response = request.get("/js/staticContent.js");
         assertThat(response)
                 .isOK()
-                .hasContentType("application/javascript");
+                .hasContentType("application/javascript")
+                .hasBodyText(FileUtils.readFileToString(new File("src/main/static/js/staticContent.js")));
+        
     }
 }

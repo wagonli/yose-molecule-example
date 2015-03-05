@@ -36,12 +36,12 @@ public class Astroport {
 
     @Test
     public void seesGates() throws IOException {
-        yose.astroport().displaysGates();
+        yose.astroport().displaysGates("Yellow", "Blue", "Green");
     }
 
     @Test
     public void seesShips() throws IOException {
-        yose.astroport().displaysShips();
+        yose.astroport().displaysShips("none", "none", "none");
     }
     
 

@@ -13,12 +13,10 @@ public class StaticHtmlPageController {
     private File pageFile;
 
     public StaticHtmlPageController(File file) {
-
         pageFile = file;
     }
 
     public void setupHtmlPage(Request request, Response response) {
-
         response.contentType("text/html");
         response.body(new FileBody(pageFile));
     }

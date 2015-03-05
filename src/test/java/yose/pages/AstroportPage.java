@@ -20,14 +20,14 @@ public class AstroportPage {
     }
 
     public void displaysGates(String color1, String color2, String color3) {
-        browser.element(By.id("gate-1")).assertText(containsString(color1));
-        browser.element(By.id("gate-2")).assertText(containsString(color2));
-        browser.element(By.id("gate-3")).assertText(containsString(color3));
+        browser.element(By.cssSelector("#gate-1 h2")).assertText(containsString(color1));
+        browser.element(By.cssSelector("#gate-2 h2")).assertText(containsString(color2));
+        browser.element(By.cssSelector("#gate-3 h2")).assertText(containsString(color3));
     }
     
     public void displaysShips(String shipeName1, String shipName2, String shipName3) {
-        browser.element(By.id("gate-1")).element(By.id("ship-1")).assertText(containsString(shipeName1));
-        browser.element(By.id("gate-2")).element(By.id("ship-2")).assertText(containsString(shipName2));
-        browser.element(By.id("gate-3")).element(By.id("ship-3")).assertText(containsString(shipName3));
+        browser.element(By.cssSelector("#ship-1")).assertText(containsString(shipeName1));
+        browser.element(By.cssSelector("#ship-2")).assertText(containsString(shipName2));
+        browser.element(By.cssSelector("#ship-3")).assertText(containsString(shipName3));
     }
 }

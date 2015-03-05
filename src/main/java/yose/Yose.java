@@ -22,10 +22,8 @@ public class Yose {
         final Gson gson = new Gson();
 
         server.start(new DynamicRoutes() {{
-            get("/").to((request, response) ->
-            {
-                response.body(new FileBody(new File("src/main/webapp/HomePage.html")));
-            });
+            get("/").to(new StaticHtmlPageController(new File("src/main/webapp/HomePage.html"))::setupHtmlPage);
+
             get("/minesweeper").to((request, response) ->
             {
                 response.body(new FileBody(new File("src/main/webapp/MinesweeperPage.html")));

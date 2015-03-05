@@ -31,6 +31,7 @@ def libs = [
         windowlicker_core : 'com.googlecode.windowlicker:windowlicker-core:r268@jar',
         windowlicker_web  : 'com.googlecode.windowlicker:windowlicker-web:r268@jar',
         DOMMatchers       : 'org.testinfected.hamcrest-matchers:dom-matchers:1.7',
+        JsonMatchers      : 'com.jayway.jsonpath:json-path-assert:0.9.1'
 ]
 
 dependencies {
@@ -46,6 +47,7 @@ dependencies {
     testCompile libs.windowlicker_core
     testCompile libs.windowlicker_web
     testCompile libs.DOMMatchers
+    testCompile libs.JsonMatchers
 }
 
 task jsTest(dependsOn: ['npm_install', 'npm_test'])

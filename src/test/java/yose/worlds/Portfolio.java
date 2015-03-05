@@ -31,4 +31,9 @@ public class Portfolio {
         user.home().visitsPersonalProfile().seesJobTitle("Development Engineer at France Telecom");
     }
 
+    @Test
+    public void pingLinkChallenge() {
+        user.home().visitsPingLink().seesAliveJson();
+
+    }
 }

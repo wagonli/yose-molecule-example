@@ -31,4 +31,10 @@ public class HomePage {
         
         return new PersonalInfoPage(browser);
     }
+
+    public PingPage visitsPingLink() {
+        AsyncElementDriver element = browser.element(By.cssSelector("a#ping-challenge-link"));
+        element.click();
+        return new PingPage(browser);
+    }
 }

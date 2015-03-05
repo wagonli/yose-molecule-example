@@ -26,12 +26,12 @@ public class PrimeFactors {
 
     private Object decompose(String input) {
 
-        if (!isInteger(input)) return new Error(input);
+        if (!isInteger(input)) return new Error(input, ErrorType.NotNumber);
         Integer number = Integer.parseInt(input);
         if (number <= 100000) {
             return  new Decomposition(number);
         }
-        return new ErrorBigNumber(input);
+        return new Error(input, ErrorType.ToBigNumber);
     }
 
     private boolean isInteger(String input) {
@@ -53,24 +53,27 @@ public class PrimeFactors {
         }
     }
 
+    public enum ErrorType {NotNumber, ToBigNumber};
     public static class Error {
         public String number;
-        public String error = "not a number";
+        public String error;
 
-        public Error(String number) {
+        public Error(String number, ErrorType errorType) {
             this.number = number;
+            switch (errorType) {
+                case NotNumber:
+                    error = "not a number";
+                    break;
+                case ToBigNumber:
+                    error = "too big number (>1e6)";
+                    break;
+                default:
+                    error = "unknown";
+            }
 
         }
     }
 
-    public static class ErrorBigNumber {
-        public String number;
-        public String error = "too big number (>1e6)";
 
-        public ErrorBigNumber(String number) {
-            this.number = number;
-
-        }
-    }
 
 }

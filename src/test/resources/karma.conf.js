@@ -6,7 +6,7 @@ module.exports = function(config) {
 
         files: [
             // this should be the path to your js code
-            'src/main/webapp/assets/js/**/*.js',
+            'src/main/static/js/**/*.js',
             'src/test/js/**/*.js'
         ],
 

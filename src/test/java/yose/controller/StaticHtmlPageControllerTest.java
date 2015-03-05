@@ -17,7 +17,7 @@ public class StaticHtmlPageControllerTest {
 
 
     private Response response = new Response();
-    private StaticHtmlPageController staticHtmlPageController = new StaticHtmlPageController(new File("src/main/webapp/HomePage.html"));
+    private StaticHtmlPageController staticHtmlPageController = new StaticHtmlPageController(new File("src/main/static/html/HomePage.html"));
     private Request request= new Request();
 
     @Test

@@ -27,7 +27,7 @@ public class HomePageTest {
 
     @Before
     public void getFileContent() throws IOException, SAXException {
-         homePageDOM = HTMLDocument.toElement(FileUtils.readFileToString(new File("src/main/webapp/HomePage.html")));
+         homePageDOM = HTMLDocument.toElement(FileUtils.readFileToString(new File("src/main/static/html/HomePage.html")));
     }
         
     @Test

@@ -12,7 +12,7 @@ import java.io.File;
 
 public class Astroport {
     public void astroportNameChallenge(Request request, Response response) throws Exception {
-        response.body(new FileBody(new File("src/main/webapp/Astroport.html")));
+        response.body(new FileBody(new File("src/main/static/html/Astroport.html")));
         response.contentType("text/html");
     }
 }

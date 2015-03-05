@@ -22,7 +22,7 @@ public class MinesweeperPageTest {
     
     @Before
     public void getFileContent() throws IOException, org.xml.sax.SAXException {
-        minesweeperDOM = HTMLDocument.toElement(FileUtils.readFileToString(new File("src/main/webapp/MinesweeperPage.html")));
+        minesweeperDOM = HTMLDocument.toElement(FileUtils.readFileToString(new File("src/main/static/html/MinesweeperPage.html")));
     }
 
     @Test

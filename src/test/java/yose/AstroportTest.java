@@ -21,7 +21,7 @@ public class AstroportTest {
 
     @Before
     public void getAstroportDom() throws IOException, org.xml.sax.SAXException {
-        astroportDom = HTMLDocument.toElement(FileUtils.readFileToString(new File("src/main/webapp/Astroport.html")));
+        astroportDom = HTMLDocument.toElement(FileUtils.readFileToString(new File("src/main/static/html/Astroport.html")));
     }
 
     @Test

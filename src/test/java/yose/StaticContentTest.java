@@ -46,6 +46,15 @@ public class StaticContentTest {
                 .isOK()
                 .hasContentType("application/javascript")
                 .hasBodyText(FileUtils.readFileToString(new File("src/main/static/js/staticContent.js")));
-        
+    }
+
+    @Test
+    public void canServeHtml() throws IOException {
+        response = request.get("/html/HomePage.html");
+        assertThat(response)
+                .isOK()
+                .hasContentType("text/html")
+                .hasBodyText(FileUtils.readFileToString(new File("src/main/static/html/HomePage.html")));
+
     }
 }

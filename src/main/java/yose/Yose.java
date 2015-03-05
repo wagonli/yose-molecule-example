@@ -26,14 +26,10 @@ public class Yose {
     public void start() throws IOException {
         final Gson gson = new Gson();
     
-        server.add(new StaticAssets(new FileServer(new File("src/main/static")), "/js", "/css"));
+        server.add(new StaticAssets(new FileServer(new File("src/main/static")), "/js", "/css", "/html"));
         server.start(new DynamicRoutes() {{
-            get("/").to(new StaticHtmlPageController(new File("src/main/webapp/HomePage.html"))::setupHtmlPage);
-
-            get("/minesweeper").to((request, response) ->
-            {
-                response.body(new FileBody(new File("src/main/webapp/MinesweeperPage.html")));
-            });
+            get("/").to(new StaticHtmlPageController(new File("src/main/static/html/HomePage.html"))::setupHtmlPage);
+            get("/minesweeper").to(new StaticHtmlPageController(new File("src/main/static/html/MinesweeperPage.html"))::setupHtmlPage);
             get("/ping").to(new Ping(gson)::pong);
             get("/primeFactors").to(new PrimeFactors(gson)::powerOfTwoChallenge);
             get("/astroport").to(new Astroport()::astroportNameChallenge);

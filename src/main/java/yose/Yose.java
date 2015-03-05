@@ -1,7 +1,6 @@
 package yose;
 
 import com.google.gson.Gson;
-import com.sun.corba.se.spi.presentation.rmi.StubAdapter;
 import com.vtence.molecule.WebServer;
 import com.vtence.molecule.lib.FileBody;
 import com.vtence.molecule.middlewares.FileServer;
@@ -31,7 +30,7 @@ public class Yose {
             get("/").to(new StaticHtmlPageController(new File("src/main/static/html/HomePage.html"))::setupHtmlPage);
             get("/minesweeper").to(new StaticHtmlPageController(new File("src/main/static/html/MinesweeperPage.html"))::setupHtmlPage);
             get("/ping").to(new Ping(gson)::pong);
-            get("/primeFactors").to(new PrimeFactors(gson)::powerOfTwoChallenge);
+            get("/primeFactors").to(new PrimeFactors(gson)::decomposition);
             get("/astroport").to(new Astroport()::astroportNameChallenge);
         }});
     }

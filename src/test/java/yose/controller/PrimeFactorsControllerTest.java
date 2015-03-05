@@ -27,20 +27,27 @@ public class PrimeFactorsControllerTest {
     @Test
     public void alwaysRespondWithJson() throws Exception {
         request.addParameter("number","4");
-        primeFactor.powerOfTwoChallenge(request, response);
+        primeFactor.decomposition(request, response);
         assertThat(response).hasContentType("application/json");
     }
 
     @Test
     public void badRequestResponseWhenNoParameterNumber() throws Exception {
-        primeFactor.powerOfTwoChallenge(request, response);
+        primeFactor.decomposition(request, response);
         assertThat(response).hasStatusCode(400);
     }
 
     @Test
     public void checkParameterNumberIsANumber() throws Exception {
         request.addParameter("number","bad");
-        primeFactor.powerOfTwoChallenge(request, response);
+        primeFactor.decomposition(request, response);
         assertThat(response).hasBodyText("{\"number\":\"bad\",\"error\":\"not a number\"}");
+    }
+
+    @Test
+    public void checkParameterNumberIsHigherThanLimit() throws Exception {
+        request.addParameter("number","1000001");
+        primeFactor.decomposition(request, response);
+        assertThat(response).hasBodyText("{\"number\":\"1000001\",\"error\":\"too big number (\\u003e1e6)\"}");
     }
 }

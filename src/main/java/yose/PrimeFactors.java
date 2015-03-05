@@ -15,19 +15,34 @@ public class PrimeFactors {
         this.gson = gson;
     }
 
-    public void powerOfTwoChallenge(Request request, Response response) throws Exception {
-       String parameter = request.parameter("number");
-       if (parameter== null) {
-           response.statusCode(400);
-           return;
-       }
-       try {
-            Integer number = Integer.parseInt(parameter);
-            response.contentType(JSON).body(gson.toJson(new Decomposition(number)));
-       } catch (NumberFormatException e) {
-            response.contentType(JSON).body(gson.toJson(new Error(parameter)));
-       }
+    public void decomposition(Request request, Response response) throws Exception {
+        String number = request.parameter("number");
+        if (number == null) {
+            response.statusCode(400);
+            return;
+        }
+        response.contentType(JSON).body(gson.toJson(decompose(number)));
     }
+
+    private Object decompose(String input) {
+
+        if (!isInteger(input)) return new Error(input, ErrorType.NotNumber);
+        Integer number = Integer.parseInt(input);
+        if (number <= 100000) {
+            return  new Decomposition(number);
+        }
+        return new Error(input, ErrorType.ToBigNumber);
+    }
+
+    private boolean isInteger(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public static class Decomposition {
         public Integer number = 0;
         public Integer[] decomposition;
@@ -38,16 +53,27 @@ public class PrimeFactors {
         }
     }
 
+    public enum ErrorType {NotNumber, ToBigNumber};
     public static class Error {
         public String number;
-        public String error = "not a number";
+        public String error;
 
-        public Error(String number) {
+        public Error(String number, ErrorType errorType) {
             this.number = number;
+            switch (errorType) {
+                case NotNumber:
+                    error = "not a number";
+                    break;
+                case ToBigNumber:
+                    error = "too big number (>1e6)";
+                    break;
+                default:
+                    error = "unknown";
+            }
 
         }
-
     }
+
 
 
 }

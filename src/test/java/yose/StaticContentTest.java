@@ -32,20 +32,20 @@ public class StaticContentTest {
 
     @Test
     public void canServeCss() throws IOException {
-        response = request.get("/css/staticContent.css");
+        response = request.get("/css/minesweeper.css");
         assertThat(response)
                 .isOK()
                 .hasContentType("text/css")
-                .hasBodyText(FileUtils.readFileToString(new File("src/main/static/css/staticContent.css")));
+                .hasBodyText(FileUtils.readFileToString(new File("src/main/static/css/minesweeper.css")));
     }
 
     @Test
     public void canServeJs() throws IOException {
-        response = request.get("/js/staticContent.js");
+        response = request.get("/js/minesweeper.js");
         assertThat(response)
                 .isOK()
                 .hasContentType("application/javascript")
-                .hasBodyText(FileUtils.readFileToString(new File("src/main/static/js/staticContent.js")));
+                .hasBodyText(FileUtils.readFileToString(new File("src/main/static/js/minesweeper.js")));
     }
 
     @Test

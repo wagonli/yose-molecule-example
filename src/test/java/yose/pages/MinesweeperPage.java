@@ -32,4 +32,12 @@ public class MinesweeperPage {
 
         return this;
     }
+
+    public void seesNoMine(int row, int col) {
+        browser.element(By.cssSelector("td#cell-" + row + "x" + col + ".lost")).assertDoesNotExist();
+    }
+
+    public void seesMine(int row, int col) {
+        browser.element(By.cssSelector("td#cell-" + row + "x" + col + ".lost")).assertExists();
+    }
 }

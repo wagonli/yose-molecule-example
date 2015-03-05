@@ -14,7 +14,7 @@ public class PingPage {
         this.browser = browser;
     }
 
-    public void seesAliveJson() {
+    public void seesServerIsAlive() {
         browser.assertPageSource(Matchers.containsString("{\"alive\":true}"));
     }
 }

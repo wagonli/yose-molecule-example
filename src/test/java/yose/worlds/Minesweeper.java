@@ -37,7 +37,8 @@ public class Minesweeper {
 
     @Test
     public void hasOneMineChallenge() throws IOException {
-        yose.minesweeper().detectMine(3, 8);
+        yose.minesweeper().seesMine(3, 8);
+        yose.minesweeper().seesNoMine(2, 5);
     }
 
 }

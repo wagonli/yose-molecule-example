@@ -34,6 +34,5 @@ public class Portfolio {
     @Test
     public void pingLinkChallenge() {
         user.home().visitsPingLink().seesAliveJson();
-
     }
 }

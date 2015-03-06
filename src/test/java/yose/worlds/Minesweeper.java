@@ -30,15 +30,31 @@ public class Minesweeper {
     }
 
     @Test
-    public void minesweeperChallenge() throws IOException {
-        yose.minesweeper().hasTitle("Minesweeper");
-        yose.minesweeper().hasBoard(8, 8);
+    public void seesMinesweeperBoard() throws IOException {
+        yose.minesweeper()
+                .hasTitle("Minesweeper")
+                .hasBoard(8, 8);
     }
 
     @Test
-    public void hasOneMineChallenge() throws IOException {
-        yose.minesweeper().seesMine(3, 6);
-        yose.minesweeper().seesNoMine(2, 5);
+    public void doesNotSeeAnyMineInitially() throws IOException {
+        yose.minesweeper()
+                .seesNoMine(3, 6);
+    }
+
+    @Test
+    public void losesWhenRevealingTrappedCell() throws IOException {
+        yose.minesweeper()
+                .revealCell(3, 6)
+                .seesMine(3, 6);
+    }
+
+    @Test
+    public void doesNotLoseWhenRevealingSafeCell() throws IOException {
+        yose.minesweeper()
+                .revealCell(2, 5)
+                .seesNoMine(2, 5)
+                .seesNoMine(3, 6);
     }
 
 }

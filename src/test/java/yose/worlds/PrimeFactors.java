@@ -92,6 +92,15 @@ public class PrimeFactors {
         yose.primeFactors()
                 .displaysMessage("Décompositor 3000")     
                 .displaysMessage("Décomposez facilement un nombre en facteurs premier")
-                .displaysMessage("le nombre à décomposer");
+                .displaysMessage("le nombre à décomposer")
+                .seesDecomposeButton("décomposer");
     }
+    
+    @Test
+    public void enterNumberAndGetsResult() throws IOException {
+        yose.primeFactors()
+                .enterNumber(12)
+                .seesResult("2.2.3");
+    }
+
 }

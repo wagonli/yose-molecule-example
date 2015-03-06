@@ -16,7 +16,7 @@ public class StaticHtmlPageController {
         pageFile = file;
     }
 
-    public void setupHtmlPage(Request request, Response response) {
+    public void get(Request request, Response response) {
         response.contentType("text/html");
         response.body(new FileBody(pageFile));
     }

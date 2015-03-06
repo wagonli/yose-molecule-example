@@ -6,6 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import yose.pages.AstroportPage;
 import yose.pages.HomePage;
 import yose.pages.MinesweeperPage;
+import yose.pages.PrimeFactorsPage;
 import yose.worlds.Minesweeper;
 
 import java.io.IOException;
@@ -48,6 +49,11 @@ public class YoseDriver {
     public MinesweeperPage minesweeper() {
         browser().navigate().to(url("/minesweeper"));
         return new MinesweeperPage(browser);
+    }
+
+    public PrimeFactorsPage primeFactors() {
+        browser().navigate().to(url("/primeFactors/ui"));
+        return new PrimeFactorsPage(browser);
     }
 
     private String url(String path) {

@@ -22,13 +22,13 @@ public class StaticHtmlPageControllerTest {
 
     @Test
     public void alwaysReturnHTMLContent() {
-        staticHtmlPageController.setupHtmlPage(request, response);
+        staticHtmlPageController.get(request, response);
         assertThat(response).hasContentType("text/html");
     }
 
     @Test
     public void hasNotEmptyBodyResponse() {
-        staticHtmlPageController.setupHtmlPage(request, response);
+        staticHtmlPageController.get(request, response);
         assertThat(response).hasBodyText(Matchers.not(Matchers.isEmptyOrNullString()));
     }
 

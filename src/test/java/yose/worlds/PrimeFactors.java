@@ -86,4 +86,12 @@ public class PrimeFactors {
                 .assertThat("[2].number", equalTo("hello"))
                 .assertThat("[2].error", equalTo("not a number"));
     }
+    
+    @Test
+    public void seesPrimeFactorsForm() throws IOException {
+        yose.primeFactors()
+                .displaysMessage("Décompositor 3000")     
+                .displaysMessage("Décomposez facilement un nombre en facteurs premier")
+                .displaysMessage("le nombre à décomposer");
+    }
 }

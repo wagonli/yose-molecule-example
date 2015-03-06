@@ -5,6 +5,9 @@ import com.vtence.molecule.Request;
 import com.vtence.molecule.Response;
 import yose.primefactor.PrimeFactor;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.vtence.molecule.http.MimeTypes.JSON;
 
 public class PrimeFactors {
@@ -16,16 +19,27 @@ public class PrimeFactors {
     }
 
     public void decomposition(Request request, Response response) throws Exception {
-        String number = request.parameter("number");
-        if (number == null) {
+        List<String> numbers = request.parameters("number");
+        if (numbers == null
+                || numbers.size() == 0) {
             response.statusCode(400);
             return;
         }
-        response.contentType(JSON).body(gson.toJson(decompose(number)));
+
+        response.contentType(JSON).body(gson.toJson(decomposeAll(numbers)));
+    }
+
+    private Object decomposeAll(List<String> numbers) {
+        if (numbers.size() == 1)
+        {
+            return decompose(numbers.get(0));
+        }
+        
+        return numbers.stream().map(
+                this::decompose).collect(Collectors.toList());
     }
 
     private Object decompose(String input) {
-
         if (!isInteger(input)) return new Error(input, ErrorType.NotNumber);
         Integer number = Integer.parseInt(input);
         if (number <= 100000) {
@@ -73,7 +87,4 @@ public class PrimeFactors {
 
         }
     }
-
-
-
 }

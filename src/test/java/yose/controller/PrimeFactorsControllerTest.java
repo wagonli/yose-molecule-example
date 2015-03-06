@@ -7,7 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 import yose.PrimeFactors;
 
+import java.util.Arrays;
+
+import static com.jayway.jsonassert.JsonAssert.with;
 import static com.vtence.molecule.testing.ResponseAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 /**
  * Created by formation on 04/03/15.
@@ -49,5 +53,30 @@ public class PrimeFactorsControllerTest {
         request.addParameter("number","1000001");
         primeFactor.decomposition(request, response);
         assertThat(response).hasBodyText("{\"number\":\"1000001\",\"error\":\"too big number (\\u003e1e6)\"}");
+    }
+
+    @Test
+    public void decomposeMultipleNumbers() throws Exception {
+        request.addParameter("number","3");
+        request.addParameter("number","5");
+        request.addParameter("number","7");
+        primeFactor.decomposition(request, response);
+        assertThat(response).hasBodyText("[{\"number\":3,\"decomposition\":[3]},{\"number\":5,\"decomposition\":[5]},{\"number\":7,\"decomposition\":[7]}]");
+    }
+
+    @Test
+    public void canDecomposeMixedElements() throws Exception {
+        request.addParameter("number","3");
+        request.addParameter("number","5");
+        request.addParameter("number","tagada");
+        primeFactor.decomposition(request, response);
+        assertThat(response).hasBodyText("[{\"number\":3,\"decomposition\":[3]},{\"number\":5,\"decomposition\":[5]},{\"number\":\"tagada\",\"error\":\"not a number\"}]");
+    }
+
+    @Test
+    public void considerEmptyStringAsNotANumber() throws Exception {
+        request.addParameter("number","");
+        primeFactor.decomposition(request, response);
+        assertThat(response).hasBodyText("{\"number\":\"\",\"error\":\"not a number\"}");
     }
 }

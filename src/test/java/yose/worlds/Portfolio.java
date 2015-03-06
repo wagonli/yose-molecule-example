@@ -23,7 +23,9 @@ public class Portfolio {
     
     @Test
     public void contactMePageChallenge() throws IOException {
-        user.home().visitsPersonalProfile().seesJobTitle("Development Engineer at France Telecom");
+        user.home()
+                .visitsPersonalProfile()
+                .seesJobTitle("Development Engineer at France Telecom");
     }
 
     @Test

@@ -2,7 +2,7 @@ module.exports = function(config) {
 
     config.set({
         basePath: '../../..',
-        frameworks: ['mocha', 'chai'],
+        frameworks: ['mocha', 'chai', 'effroi'],
 
         files: [
             // this should be the path to your js code
@@ -14,7 +14,7 @@ module.exports = function(config) {
 
         preprocessors: {
             // this should be the path to your js code
-            'src/main/webapp/assets/js/**/*.js': ['coverage']
+            'src/main/static/js/**/*.js': ['coverage']
         },
 
         // optionally, configure the reporter

@@ -37,6 +37,7 @@ public class PrimeFactorsControllerTest {
         assertThat(response).hasStatusCode(400);
     }
 
+
     @Test
     public void checkParameterNumberIsANumber() throws Exception {
         request.addParameter("number","bad");
@@ -45,9 +46,23 @@ public class PrimeFactorsControllerTest {
     }
 
     @Test
-    public void checkParameterNumberIsHigherThanLimit() throws Exception {
+    public void reallyDecompose1000000() throws Exception {
+        request.addParameter("number","1000000");
+        primeFactor.decomposition(request, response);
+        assertThat(response).hasBodyText("{\"number\":1000000,\"decomposition\":[2,2,2,2,2,2,5,5,5,5,5,5]}");
+    }
+
+    @Test
+     public void checkParameterNumberIsHigherThanLimit() throws Exception {
         request.addParameter("number","1000001");
         primeFactor.decomposition(request, response);
         assertThat(response).hasBodyText("{\"number\":\"1000001\",\"error\":\"too big number (\\u003e1e6)\"}");
+    }
+
+    @Test
+    public void detectHasTooBigNumberAVeryLargeNumber() throws Exception {
+        request.addParameter("number","109876500001");
+        primeFactor.decomposition(request, response);
+        assertThat(response).hasBodyText("{\"number\":\"109876500001\",\"error\":\"too big number (\\u003e1e6)\"}");
     }
 }

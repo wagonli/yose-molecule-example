@@ -5,6 +5,8 @@ import com.vtence.molecule.Request;
 import com.vtence.molecule.Response;
 import yose.primefactor.PrimeFactor;
 
+import java.math.BigInteger;
+
 import static com.vtence.molecule.http.MimeTypes.JSON;
 
 public class PrimeFactors {
@@ -24,19 +26,29 @@ public class PrimeFactors {
         response.contentType(JSON).body(gson.toJson(decompose(number)));
     }
 
+    private boolean isLowerThanLimit(String input, String limit) {
+        BigInteger number = new BigInteger(input);
+        if (number.compareTo(new BigInteger(limit)) <= 0) {
+            return true;
+        }
+        return false;
+    }
+
     private Object decompose(String input) {
 
-        if (!isInteger(input)) return new Error(input, ErrorType.NotNumber);
-        Integer number = Integer.parseInt(input);
-        if (number <= 100000) {
-            return  new Decomposition(number);
+        if (!isInteger(input)) {
+            return new Error(input, ErrorType.NotNumber);
+        }
+         if (isLowerThanLimit(input, "1000000")) {
+            // now we can use Integer we are sure that input is lower than 1000000
+            return  new Decomposition(Integer.parseInt(input));
         }
         return new Error(input, ErrorType.ToBigNumber);
     }
 
     private boolean isInteger(String input) {
         try {
-            Integer.parseInt(input);
+            new BigInteger(input);
             return true;
         } catch (NumberFormatException e) {
             return false;

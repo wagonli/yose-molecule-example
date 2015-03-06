@@ -16,7 +16,7 @@ public class PrimeFactor {
         List<Integer> result = new ArrayList<>();
         int candidate=2;
 
-        while (number != 1) {
+        while (number > 1) {
             for (; number % candidate == 0; number = number / candidate) {
                 result.add(candidate);
             }

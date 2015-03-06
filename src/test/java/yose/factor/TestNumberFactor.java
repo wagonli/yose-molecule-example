@@ -63,5 +63,9 @@ public class TestNumberFactor {
     public void primeFactorsListOf210() {
         assertThat(primeFactorList(210),  arrayContaining(2,3,5,7));
     }
+    @Test(timeout = 1000)
+    public void emptyListForNegativeNumber() {
+        assertThat(primeFactorList(-10), emptyArray());
+    }
 
 }

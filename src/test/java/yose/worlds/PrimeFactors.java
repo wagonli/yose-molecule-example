@@ -46,7 +46,7 @@ public class PrimeFactors {
     @Test
     public void getOrderedListOfPrimeNumbers() throws IOException {
         response = request.get("/primeFactors?number=65534");
-        assertThat(response).isOK();
+         assertThat(response).isOK();
         with(response.bodyText())
                 .assertThat("number", equalTo(65534))
                 .assertThat("decomposition", equalTo(Arrays.asList(2, 7, 31, 151)));
@@ -72,5 +72,18 @@ public class PrimeFactors {
         with(response.bodyText())
                 .assertThat("number", equalTo("1000001"))
                 .assertThat("error", equalTo("too big number (>1e6)"));
+    }
+
+    @Test
+    public void canDecomposeAListOfNumbers() throws IOException {
+        response = request.get("/primeFactors?number=300&number=120&number=hello");
+        assertThat(response).isOK();
+        with(response.bodyText())
+                .assertThat("[0].number", equalTo(300))
+                .assertThat("[0].decomposition", equalTo(Arrays.asList(2, 2, 3, 5, 5)))
+                .assertThat("[1].number", equalTo(120))
+                .assertThat("[1].decomposition", equalTo(Arrays.asList(2, 2, 2, 3, 5)))
+                .assertThat("[2].number", equalTo("hello"))
+                .assertThat("[2].error", equalTo("not a number"));
     }
 }
